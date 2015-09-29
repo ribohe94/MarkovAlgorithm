@@ -35,15 +35,7 @@ public class ContenedorRules {
     }
 
     //Metodos
-    public String ejecutarAlgoritmo(String doc, String from, String to) {
-        if (!doc.equals(doc.replace(from, to))) {
-            return doc.replace(from, to);
-        }
-    }
 
-    public String sustituir(String doc) {
-        return "";
-    }
 
     //Atributos
     LinkedList<Rule> rules;

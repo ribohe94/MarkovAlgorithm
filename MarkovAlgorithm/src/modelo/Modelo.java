@@ -10,5 +10,9 @@ package modelo;
  * @author Riccardo
  */
 public class Modelo {
-    
+
+    public Modelo() {
+    }
+
+
 }

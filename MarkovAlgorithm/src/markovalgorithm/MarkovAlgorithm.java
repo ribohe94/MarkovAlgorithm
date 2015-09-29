@@ -5,6 +5,10 @@
  */
 package markovalgorithm;
 
+import control.Gestor;
+import java.util.LinkedList;
+import modelo.Rule;
+
 /**
  *
  * @author c09141a
@@ -15,9 +19,18 @@ public class MarkovAlgorithm {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String doc = "100110||01|0|1||";
-        doc = doc.replace("|01", "ABCD");
-        System.out.println(doc);
+        String doc = "101";
+        Rule r1 = new Rule("|0", "0||");
+        Rule r2 = new Rule("1", "0|");
+        Rule r3 = new Rule("0", "");
+        LinkedList<Rule> l1 = new LinkedList<>();
+        l1.add(r1);
+        l1.add(r2);
+        l1.add(r3);
+        
+        
+        
+        System.out.println(Gestor.markov(doc, l1));
     }
-    
+
 }
