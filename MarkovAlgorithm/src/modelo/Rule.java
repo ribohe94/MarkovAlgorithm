@@ -33,10 +33,17 @@ public class Rule {
     public void setTo(String to) {
         this.to = to;
     }
-    
-    
+
+    public boolean isTerminating() {
+        return terminating;
+    }
+
+    public void setTerminating(boolean terminating) {
+        this.terminating = terminating;
+    }
     
     //Atributos
     String from;
     String to;
+    boolean terminating;
 }

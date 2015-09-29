@@ -15,7 +15,9 @@ public class MarkovAlgorithm {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        String doc = "100110||01|0|1||";
+        doc = doc.replace("|01", "ABCD");
+        System.out.println(doc);
     }
     
 }
