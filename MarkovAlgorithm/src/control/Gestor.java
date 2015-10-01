@@ -6,6 +6,7 @@
 package control;
 
 import java.util.LinkedList;
+import java.util.regex.Pattern;
 import modelo.Rule;
 
 /**
@@ -20,8 +21,15 @@ public class Gestor {
     public static String markov(String input, LinkedList<Rule> rules) {
         for (Rule rule : rules) {
             if (!input.equals(input.replace(rule.getFrom(), rule.getTo()))) {
-                input = input.replace(rule.getFrom(), rule.getTo());
-                return markov(input, rules);
+                if (rule.isTerminating()) {
+                    input = input.replaceFirst(Pattern.quote(rule.getFrom()), rule.getTo());
+                    System.out.println(input);
+                    return input;
+                } else {
+                    input = input.replaceFirst(Pattern.quote(rule.getFrom()), rule.getTo());
+                    System.out.println(input);
+                    return markov(input, rules);
+                }
             }
         }
         return input;

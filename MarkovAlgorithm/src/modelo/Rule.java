@@ -11,9 +11,10 @@ package modelo;
  */
 public class Rule {
 
-    public Rule(String from, String to) {
+    public Rule(String from, String to, boolean terminating) {
         this.from = from;
         this.to = to;
+        this.terminating = terminating;
     }
     
     //Gets & Sets
