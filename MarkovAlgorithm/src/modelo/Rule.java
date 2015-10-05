@@ -11,10 +11,11 @@ package modelo;
  */
 public class Rule {
 
-    public Rule(String from, String to, boolean terminating) {
+    public Rule(String from, String to, boolean terminating, int next) {
         this.from = from;
         this.to = to;
         this.terminating = terminating;
+        this.next = next;
     }
     
     //Gets & Sets
@@ -25,6 +26,14 @@ public class Rule {
 
     public void setFrom(String from) {
         this.from = from;
+    }
+
+    public int getNext() {
+        return next;
+    }
+
+    public void setNext(int next) {
+        this.next = next;
     }
 
     public String getTo() {
@@ -47,4 +56,5 @@ public class Rule {
     String from;
     String to;
     boolean terminating;
+    int next;
 }

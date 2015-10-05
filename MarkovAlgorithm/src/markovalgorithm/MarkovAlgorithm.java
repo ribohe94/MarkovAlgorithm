@@ -43,19 +43,30 @@ public class MarkovAlgorithm {
         alfabeto.add('c');
         
         marcadores.add('F');
+        marcadores.add('#');
+        marcadores.add('G');
         
         variables.add('x');
         variables.add('y');
-        variables.add('z');
         
-        Rule rule1 = new Rule("Fx", "xxF", false);
-        Rule rule2 = new Rule("xF", "x", true);
-        Rule rule3 = new Rule("x", "Fx", false);
+        Rule rule1 = new Rule("Fx", "xF", false, -1);
+        Rule rule2 = new Rule("xF", "x#", false, 3);
+        Rule rule3 = new Rule("x", "Fx", false, -1);
+        Rule rule4 = new Rule("Gx#", "#x", false, 3);
+        Rule rule5 = new Rule("#G", "", true, -1);
+        Rule rule6 = new Rule("Gxy", "yGx", false, 3);
+        Rule rule7 = new Rule("x", "Gx", false, 3);
+        Rule rule8 = new Rule("#", "", true, -1);
         
         LinkedList<Rule> rules = new LinkedList<>();
         rules.add(rule1);
         rules.add(rule2);
         rules.add(rule3);
+        rules.add(rule4);
+        rules.add(rule5);
+        rules.add(rule6);
+        rules.add(rule7);
+        rules.add(rule8);
         
         Gestor g = new Gestor();
         
@@ -63,7 +74,7 @@ public class MarkovAlgorithm {
 
         String input = "abc";
         
-        System.out.println(g.markov(input, rules, cv));
+        System.out.println(g.markov(input, rules, cv, -1));
         
         
 //        String mydata = "aaFcabFc";

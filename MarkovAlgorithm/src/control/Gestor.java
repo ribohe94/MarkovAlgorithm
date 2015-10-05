@@ -112,20 +112,41 @@ public class Gestor {
         return valorTo;
     }
 
-    public String markov(String input, LinkedList<Rule> rules, ContenedorValores cv) {
+    public String markov(String input, LinkedList<Rule> rules, ContenedorValores cv, int index) {
+        int i = 0;
         for (Rule rule : rules) {
-            if (!input.equals(input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule))))) {
-                if (rule.isTerminating()) {
-                    input = input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule)));
-                    System.out.println(input);
-                    return input;
-                } else {
-                    input = input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule)));
-                    System.out.println(input);
-                    return markov(input, rules, cv);
+            if (index == -1) {
+                if (!input.equals(input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule))))) {
+                    if (rule.isTerminating()) {
+                        input = input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule)));
+                        System.out.println(input);
+                        return input;
+                    } else {
+                        input = input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule)));
+
+                        System.out.println(input);
+                        return markov(input, rules, cv, rule.getNext());
+                    }
+                }
+            } else {
+                if (i >= index) {
+                    if (!input.equals(input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule))))) {
+                        if (rule.isTerminating()) {
+                            input = input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule)));
+                            System.out.println(input);
+                            return input;
+                        } else {
+                            input = input.replaceFirst(GetRegexFrom(input, cv, rule), GetStringTo(input, cv, rule, GetRegexFrom(input, cv, rule)));
+
+                            System.out.println(input);
+                            return markov(input, rules, cv, rule.getNext());
+                        }
+                    }
                 }
             }
+            i++;
         }
+
         return input;
     }
 }
