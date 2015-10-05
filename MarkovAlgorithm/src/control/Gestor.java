@@ -60,11 +60,25 @@ public class Gestor {
                 }
             }
         }
+        for (int i = 0; i < regexFrom.length(); i++) {
+            for (int j = 0; j < cv.getAlfabeto().size(); j++) {
+                if (regexFrom.charAt(i) != cv.getAlfabeto().get(j)) {
+                    return regexFrom;
+                }
 
-        return regexFrom;
+            }
+
+        }
+        if ("".equals(regexFrom)) {
+            return regexFrom;
+        }
+        return Pattern.quote(regexFrom);
     }
 
     public String GetStringTo(String input, ContenedorValores cv, Rule rule, String regex) {
+        if (cv.getVariables().isEmpty()) {
+            return rule.getTo();
+        }
         //Vamos a construir el TO
         Pattern pattern = Pattern.compile("(" + regex + ")");
         Matcher matcher = pattern.matcher(input);
@@ -109,7 +123,20 @@ public class Gestor {
                 valorTo += rule.getTo().charAt(i);
             }
         }
-        return valorTo;
+
+        for (int i = 0; i < valorTo.length(); i++) {
+            for (int j = 0; j < cv.getAlfabeto().size(); j++) {
+                if (valorTo.charAt(i) != cv.getAlfabeto().get(j)) {
+                    return valorTo;
+                }
+
+            }
+
+        }
+        if ("".equals(valorTo)) {
+            return valorTo;
+        }
+        return Pattern.quote(valorTo);
     }
 
     public String markov(String input, LinkedList<Rule> rules, ContenedorValores cv, int index) {
