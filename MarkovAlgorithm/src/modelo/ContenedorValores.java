@@ -47,7 +47,7 @@ public class ContenedorValores {
     //Metodos
     
     public String GetAlfabetoRegEx() {
-        String regex = "([";
+        String regex = "[";
         for (int i = 0; i < alfabeto.size(); i++) {
             if (i < alfabeto.size() - 1) {
                 regex += alfabeto.get(i) + ",";
@@ -55,16 +55,16 @@ public class ContenedorValores {
                 regex += alfabeto.get(i);
             }
         }
-        regex += "])";
+        regex += "]{1}";
         return regex;
     }
     
     public String GetAlfabetoIRegEx(int pos) {
-        return "([" + alfabeto.get(pos) + "])";
+        return "[" + alfabeto.get(pos) + "]{1}";
     }
     
     public String GetMarcadoresRegEx() {
-        String regex = "([";
+        String regex = "[";
         for (int i = 0; i < marcadores.size(); i++) {
             if (i < marcadores.size() - 1) {
                 regex += marcadores.get(i) + ",";
@@ -72,16 +72,16 @@ public class ContenedorValores {
                 regex += marcadores.get(i);
             }
         }
-        regex += "])";
+        regex += "]{1}";
         return regex;
     }
     
     public String GetMarcadorIRegEx(int pos) {
-        return "([" + marcadores.get(pos) + "])";
+        return "[" + marcadores.get(pos) + "]{1}";
     }
     
     public String GetVariablesRegEx() {
-        String regex = "([";
+        String regex = "[";
         for (int i = 0; i < variables.size(); i++) {
             if (i < variables.size() - 1) {
                 regex += variables.get(i) + ",";
@@ -89,7 +89,7 @@ public class ContenedorValores {
                 regex += variables.get(i);
             }
         }
-        regex += "])";
+        regex += "]{1}";
         return regex;
     }
 
